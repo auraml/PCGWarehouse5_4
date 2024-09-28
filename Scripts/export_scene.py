@@ -1,5 +1,6 @@
 import unreal
 import argparse
+import json
 
 
 def get_arrary_from_vector(input_vector):
@@ -66,9 +67,9 @@ def main(prev_row, prev_col, curr_row, curr_col):
     print()
     print("############")
     print(prev_row, prev_col, curr_row, curr_col)
-    file_name = f"D:\\UnrealProjects\\PCGWarehouse5_4\\Scripts\\exported_scenes\\scene_data_({prev_row},{prev_col}).txt"
+    file_name = f"D:\\UnrealProjects\\PCGWarehouse5_4\\Scripts\\exported_scenes\\scene_data_({prev_row},{prev_col}).json"
     with open(file_name, 'w') as file:
-        file.write(str(scene_data))
+        json.dump(scene_data, file)
 
 
 if __name__ == "__main__":
