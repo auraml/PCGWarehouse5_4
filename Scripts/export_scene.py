@@ -1,6 +1,7 @@
 import unreal
-import argparse
 import json
+import random
+import time
 
 
 def get_arrary_from_vector(input_vector):
@@ -51,40 +52,23 @@ def get_scene_data(rack_actor):
     return scene_data
 
 
-def main(prev_row, prev_col, curr_row, curr_col):
+if __name__ == "__main__":
+    row = random.randint(1, 10)
+    col = random.randint(1, 10)
+    print(row, col)
 
     rack_actor = None
     editor_actor_subsystem = unreal.get_editor_subsystem(
         unreal.EditorActorSubsystem)
     actors = editor_actor_subsystem.get_all_level_actors()
     rack_actor = get_rack_actor(actors)
-    print("rack_actor: ", rack_actor)
 
-    rack_actor.set_editor_property("Rack Columns", int(curr_row))
-    rack_actor.set_editor_property("Rack Rows", int(curr_col))
+    rack_actor.set_editor_property("Rack Columns", int(col))
+    rack_actor.set_editor_property("Rack Rows", int(row))
+
     scene_data = get_scene_data(rack_actor)
 
-    print()
-    print("############")
-    print(prev_row, prev_col, curr_row, curr_col)
-    file_name = f"D:\\UnrealProjects\\PCGWarehouse5_4\\Scripts\\exported_scenes\\scene_data_({prev_row},{prev_col}).json"
+    timestamp = int(time.time() * 1000)
+    file_name = f"D:\\UnrealProjects\\PCGWarehouse5_4\\Scripts\\exported_scenes\\scene_data_{timestamp}.json"
     with open(file_name, 'w') as file:
         json.dump(scene_data, file)
-
-
-if __name__ == "__main__":
-    # Create an argument parser
-    parser = argparse.ArgumentParser(
-        description='Sample script to demonstrate argument passing.')
-
-    # Add arguments to the parser
-    parser.add_argument('arg1', type=str, help='The first argument.')
-    parser.add_argument('arg2', type=str, help='The second argument.')
-    parser.add_argument('arg3', type=str, help='The third argument.')
-    parser.add_argument('arg4', type=str, help='The fourth argument.')
-
-    # Parse the arguments
-    args = parser.parse_args()
-
-    # Call the main function with parsed arguments
-    main(args.arg1, args.arg2, args.arg3, args.arg4)
