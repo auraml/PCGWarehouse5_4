@@ -43,7 +43,8 @@ def get_objects_map(asset_path="/Game/Assets"):
         # filter by SM name
         name = static_mesh.get_name()
         # if "Rack" in name or "Pallet" in name or "Box" in name:
-        objects_map[static_mesh.get_name()] = static_mesh["static_mesh_obj"]
+        # objects_map[static_mesh.get_name()] = static_mesh["static_mesh_obj"]
+        objects_map[name] = static_mesh
 
     return objects_map
 

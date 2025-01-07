@@ -3,3 +3,7 @@ Intermediate/
 Saved/
 Content/Deko_MatrixDemo
 Content/Main_BuiltData.uasset
+Scripts/exported_scenes/
+*.zip
+*.pyc
+Scripts/exported_scenes.zip
